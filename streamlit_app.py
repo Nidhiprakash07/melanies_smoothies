@@ -22,7 +22,8 @@ session = cnx.session()
 from snowflake.snowpark.functions import col
 
 
-
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'),col('FRUIT_NAME'))
+pd_df = my_dataframe.to_pandas()
 
 
 options = st.multiselect(
@@ -33,15 +34,14 @@ options = st.multiselect(
 
 
 if options:
-    my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'),col('FRUIT_NAME'))
-    pd_df = my_dataframe.to_pandas()
+    
     options_string = ''
 
     for x in options:
       options_string += x + ' '
 
       search_on=pd_df.loc[pd_df['FRUIT_NAME'] == x, 'SEARCH_ON'].iloc[0]
-      st.write('The search value for ', x,' is ', search_on, '.')
+      #st.write('The search value for ', x,' is ', search_on, '.')
       
       st.subheader(x + ' Nutrition Information')
       smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+search_on)
@@ -50,9 +50,9 @@ if options:
      # my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'),col('FRUIT_NAME'))
       st.stop()
 
-    st.write(options_string)
+    #st.write(options_string)
 
-    my_insert_stmt = """ insert into smoothies.public.orders(ingredients,NAME_ON_ORDER)
+    #my_insert_stmt = """ insert into smoothies.public.orders(ingredients,NAME_ON_ORDER)
             values ('""" + options_string + """','"""+name_on_smoothie+"')"""
 
     st.write(my_insert_stmt)
