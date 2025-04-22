@@ -44,10 +44,10 @@ if options:
       #st.write('The search value for ', x,' is ', search_on, '.')
       
       st.subheader(x + ' Nutrition Information')
-      smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+search_on)
+      smoothiefroot_response = requests.get("https://my.fruityvise.com/api/fruit/"+search_on)
       
       st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-     # my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'),col('FRUIT_NAME'))
+      my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'),col('FRUIT_NAME'))
       st.stop()
 
     #st.write(options_string)
@@ -55,7 +55,7 @@ if options:
     #my_insert_stmt = """ insert into smoothies.public.orders(ingredients,NAME_ON_ORDER)
             #values ('""" + options_string + """','"""+name_on_smoothie+"')"""
 
-    st.write(my_insert_stmt)
+    #st.write(my_insert_stmt)
 
     time_to_insert = st.button('Submit Order')
 
