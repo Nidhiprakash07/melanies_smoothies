@@ -48,7 +48,7 @@ if options:
       
       st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
       my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'),col('FRUIT_NAME'))
-      st.stop()
+      #st.stop()
 
     #st.write(options_string)
 
