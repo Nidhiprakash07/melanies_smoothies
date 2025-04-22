@@ -43,10 +43,10 @@ if options:
       st.write('The search value for ', x,' is ', search_on, '.')
       
       st.subheader(x + ' Nutrition Information')
-      smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+x)
+      smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+search_on)
       
       st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-      my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'),col('FRUIT_NAME'))
+     # my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'),col('FRUIT_NAME'))
       st.stop()
 
     st.write(options_string)
