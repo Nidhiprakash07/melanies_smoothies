@@ -19,7 +19,7 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 from snowflake.snowpark.functions import col
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'))
-st.stop()
+
 
 
 options = st.multiselect(
@@ -38,7 +38,7 @@ if options:
       smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+x)
       st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
       my_dataframe = session.table("smoothies.public.fruit_options").select(col('SEARCH_ON'))
-        
+      st.stop()
 
     st.write(options_string)
 
