@@ -53,7 +53,7 @@ if options:
     #st.write(options_string)
 
     #my_insert_stmt = """ insert into smoothies.public.orders(ingredients,NAME_ON_ORDER)
-            values ('""" + options_string + """','"""+name_on_smoothie+"')"""
+            #values ('""" + options_string + """','"""+name_on_smoothie+"')"""
 
     st.write(my_insert_stmt)
 
