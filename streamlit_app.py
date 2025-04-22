@@ -19,8 +19,7 @@ st.write("The name on your smoothie will be", name_on_smoothie)
 cnx = st.connection("snowflake")
 session = cnx.session()
 from snowflake.snowpark.functions import col
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
-st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+
 
 options = st.multiselect(
     "Choose upto 5 ingredients: ",
@@ -34,6 +33,8 @@ if options:
 
     for x in options:
         options_string += x + ' '
+        my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+        st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
     st.write(options_string)
 
