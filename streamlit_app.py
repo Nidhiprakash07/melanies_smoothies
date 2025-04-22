@@ -2,7 +2,7 @@
 import streamlit as st
 import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response)
+#st.text(smoothiefroot_response)
 
 # Write directly to the app
 st.title(f" :cup_with_straw: Customize your smoothie!:cup_with_straw:")
@@ -20,7 +20,7 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 from snowflake.snowpark.functions import col
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
-#st.dataframe(data=my_dataframe, use_container_width=True)
+st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
 options = st.multiselect(
     "Choose upto 5 ingredients: ",
