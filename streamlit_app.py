@@ -40,7 +40,7 @@ if options:
     for x in options:
       options_string += x + ' '
 
-      search_on=pd_df.loc[pd_df['FRUIT_NAME'] == x, 'SEARCH_ON'].iloc[1]
+      search_on=pd_df.loc[pd_df['FRUIT_NAME'] == x, 'SEARCH_ON'].iloc[0]
       #st.write('The search value for ', x,' is ', search_on, '.')
       
       st.subheader(x + ' Nutrition Information')
