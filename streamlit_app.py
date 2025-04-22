@@ -1,5 +1,8 @@
 # Import python packages
 import streamlit as st
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
 
 # Write directly to the app
 st.title(f" :cup_with_straw: Customize your smoothie!:cup_with_straw:")
